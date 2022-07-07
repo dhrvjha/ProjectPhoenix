@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title>{{ title }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body class="page-container">
+        <nav class="navbar dark-bg">
+            <div class="nav-title center">
+                <h1 class="light-text">{{ first_name }} {{ last_name }}</h1>
+            </div>
+        </nav>
+        <div class="horizontal-list">
+            <a href="#">Books</a>
+            <a href="#">Books</a>
+            <a href="#">Books</a>
+            <a href="#">Books</a>
+            <a href="#">Books</a>
+            <a href="#">Books</a>
+            <a href="#">#</a>
+        </div>
+        <main class="container">
+                <picture class="flex-container">
+                    <img class="profile-picture center" src="{{ profile_picture }}" alt="{{ first_name }}'s profile picture" />
+                </picture>
+                <div class="about-me">
+                    {{ about_me }}
+                     <ul>
+                        {% for user_handle, website in accounts %}
+                         <li>{{ user_handle }} on {{ website }}</li>
+                        {% endfor %}
+                     </ul>
+                </div>
+        </main>
+        <footer class="center">
+            Made with ❤️ in Python.
+        </footer>
+    </body>
+</html>
