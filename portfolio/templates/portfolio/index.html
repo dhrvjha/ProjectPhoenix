@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <title>{{ title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="{{ css_reference }}" />
     </head>
     <body class="page-container">
         <nav class="navbar dark-bg">
@@ -13,12 +13,10 @@
             </div>
         </nav>
         <div class="horizontal-list">
-            <a href="#">Books</a>
-            <a href="#">Books</a>
-            <a href="#">Books</a>
-            <a href="#">Books</a>
-            <a href="#">Books</a>
-            <a href="#">Books</a>
+            {% for tag in tags %}
+            {% comment %} TODO: hashtag feature {% endcomment %}
+                <a href="#">tag</a>
+            {% endfor %}
             <a href="#">#</a>
         </div>
         <main class="container">
