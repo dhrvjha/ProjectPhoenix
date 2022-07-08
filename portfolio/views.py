@@ -34,13 +34,15 @@ class UserPortfolioView(View):
         self.username: str
 
     def get_queryset(self) -> Account:
-        return self.model.objects.get(username=self.username)
+        return self.model.objects.select_related("portfolio").get(
+            username=self.username
+        )
 
     def get_context_data(self, **kwargs) -> Dict:
-        context = super().get_context_data(**kwargs)
+        context = {}
         try:
             queryset = self.get_queryset()
-        except self.model.DoesNotExist():
+        except self.model.DoesNotExist:
             return None
         context["title"] = str(queryset)
         context["first_name"] = queryset.first_name
@@ -48,6 +50,7 @@ class UserPortfolioView(View):
         context["email"] = queryset.email
         context["username"] = queryset.username
         context["profile_picture"] = queryset.profile_picture
+        context["css_reference"] = queryset.portfolio.css_reference_link
         return context
 
     def get(self, request, username):
