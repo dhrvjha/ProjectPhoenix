@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.views import View
 
 from accounts.forms import AccountRegisterForm
+from portfolio.models import Portfolio
 
 
 class RegisterAccount(View):
@@ -14,10 +15,7 @@ class RegisterAccount(View):
         self.request: HttpRequest
 
     def get_context_data(self):
-        context = {
-            "form": AccountRegisterForm(self.request.POST),
-            "title": "Register"
-        }
+        context = {"form": AccountRegisterForm(self.request.POST), "title": "Register"}
         return context
 
     def get(self, request):
@@ -26,15 +24,11 @@ class RegisterAccount(View):
 
     def post(self, request):
         self.request = request
-        print("*"*25)
-        print("\n\n")
-        print(self.request.POST)
-        print("\n\n")
-        print("*"*25)
         context = self.get_context_data()
         form = context.get("form")
         if form.is_valid():
-            form.save()
+            account = form.save()
+            Portfolio(user=account).save()
             username = form.cleaned_data.get("username")
             messages.success(request, f"Account created for {username}!")
             return redirect("login")
