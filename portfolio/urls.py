@@ -6,7 +6,7 @@ from portfolio.views import Home, UserPortfolioView
 urlpatterns = [
     path("", Home.as_view(), name="home"),
     path(
-        "<username:slug>/",
+        "<slug:username>/",
         login_required(UserPortfolioView.as_view()),
         name="portfolio_view",
     ),
