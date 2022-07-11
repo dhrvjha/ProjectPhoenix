@@ -34,7 +34,7 @@ class UserPortfolioView(View):
         self.username: str
 
     def get_queryset(self) -> Account:
-        return self.model.objects.select_related("portfolio").get(
+        return self.model.objects.select_related("portfolio", "designtemplates").get(
             username=self.username
         )
 
@@ -50,7 +50,7 @@ class UserPortfolioView(View):
         context["email"] = queryset.email
         context["username"] = queryset.username
         context["profile_picture"] = queryset.profile_picture
-        context["css_reference"] = queryset.portfolio.css_reference_link
+        context["css_reference"] = queryset.portfolio.designtemplates.css_reference_link
         return context
 
     def get(self, request, username):
