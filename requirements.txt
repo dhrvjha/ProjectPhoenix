@@ -24,7 +24,7 @@ python-dotenv==0.20.0
 PyYAML==6.0
 regex==2022.6.2
 six==1.16.0
-sqlparse==0.4.2
+sqlparse==0.4.4
 toml==0.10.2
 tomli==2.0.1
 tqdm==4.64.0
