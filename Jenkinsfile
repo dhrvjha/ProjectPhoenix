@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker {image 'python:slim-bullseye'}
+    }
     options {
         timeout(time: 1, unit: "SECONDS")
     }
